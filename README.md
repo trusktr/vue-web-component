@@ -4,6 +4,8 @@ vue-web-component
 
 Generate custom elements from [Vue](https://vuejs.org) component definitions.
 
+#### `npm install vue-web-component --save`
+
 ### What?
 
 `vue-web-component` generates Web Components (Custom Elements) that are
