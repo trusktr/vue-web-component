@@ -149,23 +149,35 @@ function makeVuePropTypes( vueProps ) {
 
     const warn = () => console.warn('vue-web-component: The Vue component that you converted into a custom element will receive only string values from the "'+key+'" attribute. If you\'d like string values from attributes coerced into a certain type, define that type in your Vue component. For example: props: { "'+key+'": Number }')
 
-    for ( const key in vueProps ) {
+    function getDefault( vueProp ) {
+        // TODO: calling the default value factory and using that single value
+        // causes all instanced of the element to use the same cached value for
+        // Objects and Arrays. How to fix?
+        if (typeof vueProp.default == 'function')
+            return Object.freeze(vueProp.default())
+        else
+            return vueProp.default
+    }
 
-        if ( vueProps[ key ].type === null ) {
+    for ( const key in vueProps ) {
+        const prop = vueProps[ key ]
+        const defaultVal = getDefault(prop)
+
+        if ( prop.type === null ) {
             result[ key ] = skatePropTypes.any
             warn()
             console.warn('vue-web-component: You did not specify a prop type for the attribute mentioned in the previous warning. Any values for this attribute will be passed as a string value to the Vue component.')
         }
-        else if ( vueProps[ key ].type === Number )
-            result[ key ] = skatePropTypes.number
-        else if ( vueProps[ key ].type === String )
-            result[ key ] = skatePropTypes.string
-        else if ( vueProps[ key ].type === Boolean )
-            result[ key ] = skatePropTypes.boolean
-        else if ( vueProps[ key ].type === Object )
-            result[ key ] = skatePropTypes.object
-        else if ( vueProps[ key ].type === Array )
-            result[ key ] = skatePropTypes.array
+        else if ( prop.type === Number )
+            result[ key ] = Object.assign({}, skatePropTypes.number, {default:defaultVal})
+        else if ( prop.type === String )
+            result[ key ] = Object.assign({}, skatePropTypes.string, {default:defaultVal})
+        else if ( prop.type === Boolean )
+            result[ key ] = Object.assign({}, skatePropTypes.boolean, {default:defaultVal})
+        else if ( prop.type === Object )
+            result[ key ] = Object.assign({}, skatePropTypes.object, {default:defaultVal})
+        else if ( prop.type === Array )
+            result[ key ] = Object.assign({}, skatePropTypes.array, {default:defaultVal})
         else {
             result[ key ] = skatePropTypes.any
             warn()

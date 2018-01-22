@@ -30,23 +30,19 @@ setTimeout(() => {
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-//import App from './App.vue'
+//import Foo from './Foo.vue'
 //import Vue from 'vue'
 //import VueWebComponent from '../../src/index'
 
-//console.log(' ----- App', App)
-
-//document.body.innerHTML = '<div id="root"><app-element></app-element></div>'
+//document.body.innerHTML = '<div id="root"><foo-element></foo-element></div>'
 //const root = document.querySelector('#root')
 
 ////new Vue({
   ////el: root,
-  ////components: { appElement: App },
+  ////components: { fooElement: Foo },
 ////})
 
-//customElements.define('app-element', VueWebComponent(App))
-
-//console.log(' ----- App 2', App)
+//customElements.define('foo-element', VueWebComponent(Foo))
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
