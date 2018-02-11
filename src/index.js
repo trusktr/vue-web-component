@@ -3,7 +3,8 @@ import { withLifecycle, withUpdate, withRenderer, props as skatePropTypes } from
 
 // create a Custom Element class from a Vue component
 export default
-function VueWebComponent( vueComponent, ElementClass = HTMLElement ) {
+function VueWebComponent( vueComponent, ElementClass ) {
+    ElementClass = ElementClass || class extends HTMLElement {}
 
     // NOTE! This mutates the given component spec, see
     // https://github.com/vuejs/vue/issues/7494. We do this up front (instead of
