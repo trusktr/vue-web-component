@@ -2,10 +2,14 @@
   "name": "vue-web-component",
   "version": "1.1.0",
   "description": "Generate custom elements from Vue components.",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "echo TODO, PRs welcome",
-    "test": "echo TODO"
+    "build": "builder run build:prod",
+    "dev": "builder run build:dev",
+    "test": "builder run npm:test",
+    "preversion": "builder run npm:preversion",
+    "version": "builder run npm:version",
+    "postversion": "builder run npm:postversion"
   },
   "repository": {
     "type": "git",
@@ -20,5 +24,9 @@
   "dependencies": {
     "skatejs": "^5.1.1",
     "vue": "^2.5.11"
+  },
+  "devDependencies": {
+    "builder": "^3.2.3",
+    "builder-js-package": "trusktr/builder-js-package"
   }
 }

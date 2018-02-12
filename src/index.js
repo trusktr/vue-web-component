@@ -234,3 +234,6 @@ function forChangedProps(oldProps, newProps, action) {
         if ( oldProps[ oldKey ] !== newProps[ oldKey ] )
             action( oldKey, oldProps[ oldKey ] )
 }
+
+// IMPORTANT! keep this line as the last line, it is auto-generated from package.json version.
+export const version = '1.1.0'
