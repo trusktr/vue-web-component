@@ -236,4 +236,4 @@ function forChangedProps(oldProps, newProps, action) {
 }
 
 // IMPORTANT! keep this line as the last line, it is auto-generated from package.json version.
-export const version = '1.1.0'
+export const version = '1.2.0'
