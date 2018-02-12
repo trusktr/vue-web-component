@@ -4,6 +4,7 @@
   "description": "Generate custom elements from Vue components.",
   "main": "index.js",
   "scripts": {
+    "clean": "builder run build:clean",
     "build": "builder run build:prod",
     "dev": "builder run build:dev",
     "test": "builder run npm:test",
