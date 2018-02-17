@@ -30,6 +30,8 @@ function VueWebComponent( vueComponent, ElementClass ) {
         constructor(...args) {
             super(...args)
 
+            console.log(' --- VueWebComponent.constructor')
+
             this.vue_instance = new Component
             this.vue_instancePromise = null
             this.vue_mounted = false
@@ -40,6 +42,7 @@ function VueWebComponent( vueComponent, ElementClass ) {
          * root.
          */
         renderer( root, render ) {
+            console.log(' --- VueWebComponent.renderer')
             if ( this.vue_mounted ) return
 
             // mount the component
@@ -54,6 +57,7 @@ function VueWebComponent( vueComponent, ElementClass ) {
          * to ReactDOM.render.
          */
         vue_mountComponent( container ) {
+            console.log(' --- VueWebComponent.vue_mountComponent')
 
             // `tmp` will get replaced by the DOM generated from the component
             const tmp = document.createElement( 'tmp' )
@@ -72,6 +76,7 @@ function VueWebComponent( vueComponent, ElementClass ) {
          * into the shadow root.
          */
         vue_applyStyle( root ) {
+            console.log(' --- VueWebComponent.vue_applyStyle')
 
             // if no components have scoped style
             if (! scopeIds.length ) return
@@ -102,6 +107,7 @@ function VueWebComponent( vueComponent, ElementClass ) {
         static get props() { return vuePropTypes }
 
         updated( prevProps, prevState ) {
+            console.log(' --- VueWebComponent.updated')
             super.updated( prevProps, prevState )
 
             // pass this.props as first arg, whose keys are iterated on in
@@ -144,6 +150,7 @@ class RealSlot extends withLifecycle( withUpdate( HTMLElement ) ) {
 customElements.define('real-slot', RealSlot)
 
 function makeVuePropTypes( vueProps ) {
+    console.log(' --- makeVuePropTypes')
     if (! vueProps ) return {}
 
     const result = {}
@@ -192,6 +199,7 @@ function makeVuePropTypes( vueProps ) {
 }
 
 function getAllScopeIds( vueComponent ) {
+    console.log(' --- getAllScopeIds')
 
     const result = []
 
@@ -209,6 +217,7 @@ function getAllScopeIds( vueComponent ) {
 }
 
 function getMatchingCSSRules( scopeIds ) {
+    console.log(' --- getMatchingCSSRules')
     const sheets = document.styleSheets
 
     const result = []
@@ -230,6 +239,7 @@ function getMatchingCSSRules( scopeIds ) {
 }
 
 function forChangedProps(oldProps, newProps, action) {
+    console.log(' --- forChangedProps')
     for ( const oldKey in oldProps )
         if ( oldProps[ oldKey ] !== newProps[ oldKey ] )
             action( oldKey, oldProps[ oldKey ] )
